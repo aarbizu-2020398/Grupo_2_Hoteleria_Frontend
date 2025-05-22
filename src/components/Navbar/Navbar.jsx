@@ -24,15 +24,7 @@ return (
 
         {/* Barra de búsqueda eliminada */}
         
-        {/* Botón de registro */}
-        <div className="flex items-center ml-4">
-          <Link 
-            to="/login" 
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full transition"
-          >
-            Iniciar Sesión
-          </Link>
-        </div>
+        
       </div>
     </nav>
   );
