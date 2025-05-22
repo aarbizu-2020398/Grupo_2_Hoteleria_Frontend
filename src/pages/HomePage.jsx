@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -25,9 +26,9 @@ const HomePage = () => {
               Habitaciones <span className="font-bold">al mejor precio</span>
             </h2>
             
-            <button className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all duration-300 text-lg shadow-lg hover:shadow-xl">
+            <Link to="/register" className="px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all duration-300 text-lg shadow-lg hover:shadow-xl inline-block">
               REGISTRATE
-            </button>
+            </Link>
           </div>
         </div>
       </div>
