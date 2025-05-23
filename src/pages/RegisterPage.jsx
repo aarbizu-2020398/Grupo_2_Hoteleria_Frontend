@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar/Navbar';
+
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +31,6 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <Navbar />
       
       <div className={`pt-12 pb-12 px-4 transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
         <div className={`max-w-6xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 ${mounted ? 'translate-y-0' : 'translate-y-5'}`}>

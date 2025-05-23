@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar/Navbar';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +18,6 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar />
       
       <div className={`min-h-[calc(100vh-4rem)] flex items-center justify-center transition-opacity duration-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
         <div className={`max-w-6xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 ${mounted ? 'translate-y-0' : 'translate-y-5'}`}>
