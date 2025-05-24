@@ -15,7 +15,7 @@ const LoginPage = () => {
         
         // Redirige si ya está autenticado
         if(isAuthenticated()) {
-            navigate('/dashboard');
+            navigate('/login');
         }
     }, [navigate]);
 
