@@ -1,117 +1,62 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
+import CreateHotelForm from '../components/hotel/hotelForm';
+import { useHotelRegistration } from '../hooks/useHotels';
 
-const HotelFormPage = () => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    direccion: '',
-    categoria: '',
-    foto: null
-  });
+const HotelRegistrationPage = () => {
+  const [showForm, setShowForm] = useState(false);
+  const { submitHotel, loading, error, success, reset } = useHotelRegistration();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleFileChange = (e) => {
-    setFormData({
-      ...formData,
-      foto: e.target.files[0]
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Datos del hotel:', formData);
-    // Aquí iría la lógica para enviar los datos del hotel
+  const handleSubmit = async (hotelData) => {
+    const result = await submitHotel(hotelData);
+    if (result.success) {
+      setShowForm(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <div className="min-h-screen flex items-center justify-center pt-16">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-sm">
-          <h2 className="text-center text-2xl font-bold mb-6">
-            Registro de Hotel
-          </h2>
-          
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-1">
-                Nombre del Hotel
-              </label>
-              <input
-                id="nombre"
-                name="nombre"
-                type="text"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                value={formData.nombre}
-                onChange={handleChange}
-              />
-            </div>
-            
-            <div className="mb-4">
-              <label htmlFor="direccion" className="block text-sm font-medium text-gray-700 mb-1">
-                Dirección
-              </label>
-              <input
-                id="direccion"
-                name="direccion"
-                type="text"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                value={formData.direccion}
-                onChange={handleChange}
-              />
-            </div>
-            
-            <div className="mb-4">
-              <label htmlFor="categoria" className="block text-sm font-medium text-gray-700 mb-1">
-                Categoría del Hotel
-              </label>
-              <input
-                id="categoria"
-                name="categoria"
-                type="text"
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                value={formData.categoria}
-                onChange={handleChange}
-                placeholder="Ej: 5 Estrellas, Boutique, Resort..."
-              />
-            </div>
-            
-            <div className="mb-6">
-              <label htmlFor="foto" className="block text-sm font-medium text-gray-700 mb-1">
-                Foto del Hotel
-              </label>
-              <input
-                id="foto"
-                name="foto"
-                type="file"
-                accept="image/*"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                onChange={handleFileChange}
-              />
-            </div>
-  
+    <>
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        
+        <div className="container mx-auto p-4 pt-20">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold text-gray-800">Gestión de Hoteles</h1>
             <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Registrar Hotel
+              onClick={() => {
+                reset();
+                setShowForm(true);
+              }}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              >
+              Registrar Nuevo Hotel
             </button>
-          </form>
+          </div>
+
+          {error && !showForm && (
+            <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+              {error}
+            </div>
+          )}
+
+          {success && (
+            <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+              ¡Hotel registrado con éxito!
+            </div>
+          )}
+
+          {/* Aquí iría la lista de hoteles registrados */}
+          
+          {showForm && (
+            <CreateHotelForm 
+            onClose={() => setShowForm(false)} 
+              onSubmit={handleSubmit}
+              />
+            )}
         </div>
       </div>
-    </div>
+  </>
   );
 };
 
-export default HotelFormPage;
+export default HotelRegistrationPage;
