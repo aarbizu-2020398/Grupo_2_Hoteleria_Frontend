@@ -1,12 +1,20 @@
 import { Navigate } from "react-router"
-import { DasboardPrivateUser, DashboardPrivate } from "./Dashboards/DashboardPrivate"
+import { DashboardPageAdmin } from "./Dashboards/DashboardPageAdmin"
+import  DashboardUser  from "./Dashboards/DashboardUser"
+import {  PrivateRoutesRole, PrivateRoutes } from "../components/privateRoutes"
 
 export const Dashboard = () => {
     const role = localStorage.getItem("roleUser")
     if(role === "USER"){
-        return <DasboardPrivateUser />
+        return (
+            <PrivateRoutes element={<DashboardUser />}/>
+        )
     }else if(role === "ADMIN_PLATAFORM"){
-        return <DashboardPrivate />
+        return (
+            <>
+                <PrivateRoutesRole element = {<DashboardPageAdmin/>}/>
+            </>
+        )
     }else{
         return <Navigate to={"/login"}/>
     }

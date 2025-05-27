@@ -11,5 +11,6 @@ export const PrivateRoutes = ({element}) => {
 export const PrivateRoutesRole = ({element}) =>{
 
     const verificationAdmin = localStorage.getItem("roleUser")
-    return verificationAdmin === "ADMIN_PLATAFORM"? element : <Navigate to={"/homePage"}/>
+    const verification = localStorage.getItem("user")
+    return verificationAdmin === "ADMIN_PLATAFORM" && verification ? element : <Navigate to={"/login"}/>
 }
