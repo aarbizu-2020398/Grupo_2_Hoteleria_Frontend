@@ -5,7 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import HotelFormPage from "./pages/HotelFormPage";
 import RoomFormPage from "./pages/RoomFormPage";
 import EventRoomFormPage from "./pages/EventRoomFormPage";
-import { DashboardPrivate } from "./pages/DashboardAdmin/DashboardPrivate";
+import { Dashboard } from "./pages/Dashboard";
 
 const routes = [
     {path: "/HomePage", element: <HomePage />},
@@ -15,7 +15,7 @@ const routes = [
     {path: "/room-form", element: <RoomFormPage />},
     {path: "/event-room-form", element: <EventRoomFormPage />},
     {path: "/", element: <Navigate to={"/Homepage"}/>},
-    {path: "/admin", element: <DashboardPrivate/>}
+    {path: "/dashboard", element: <Dashboard/>}
 ]
 
 export default routes

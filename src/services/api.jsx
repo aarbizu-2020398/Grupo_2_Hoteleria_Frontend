@@ -8,7 +8,7 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
     (config) => {
-        const userDetails = localStorage.getItem("user");
+        const userDetails = localStorage.getItem("user", "roleUser");
         if(userDetails){
             const token = JSON.parse(userDetails).token;
             config.headers.Authorization = token;
@@ -48,6 +48,7 @@ export const login = async (data) => {
         const response = await apiClient.post('/auth/login', data);
         if(response.data.userDetails) {
             localStorage.setItem("user", JSON.stringify(response.data.userDetails));
+            localStorage.setItem("roleUser", response.data.userDetails.role)
         }
         return response;
     } catch (e) {

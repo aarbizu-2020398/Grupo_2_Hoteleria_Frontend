@@ -1,7 +1,6 @@
 import { Navigate } from "react-router-dom"
 
-const PrivateRoutes = ({element}) => {  
-
+export const PrivateRoutes = ({element}) => {  
 
     const verification = localStorage.getItem("user")
 
@@ -9,4 +8,8 @@ const PrivateRoutes = ({element}) => {
 
 }
 
-export default PrivateRoutes
+export const PrivateRoutesRole = ({element}) =>{
+
+    const verificationAdmin = localStorage.getItem("roleUser")
+    return verificationAdmin === "ADMIN_PLATAFORM"? element : <Navigate to={"/homePage"}/>
+}
