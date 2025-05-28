@@ -1,45 +1,150 @@
-import { useState } from 'react';
-import { addRoom } from '../services/api';
-import { useNavigate } from 'react-router-dom';
+// hooks/useRoomForm.js
+import { useState, useEffect } from 'react';
+import { addRoom, listRooms } from '../services/api';
+import { listHotels } from '../services/api';
 
-export const useAddRoom = () => {
-  const [error, setError] = useState(null);
+export const useRoomForm = () => {
+  const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
+  
+  const [formData, setFormData] = useState({
+    hotel: '',
+    roomNumber: '',
+    floor: '',
+    capacity: '',
+    comfort: [],
+    type: 'Individual',
+    description: '',
+    priceNight: '',
+    status: 'available',
+    statusActive: true
+  });
 
-  const submitRoom = async (roomData) => {
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        const hotelsData = await listHotels();
+        setHotels(hotelsData);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    
+    fetchHotels();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleComfortChange = (e) => {
+    const { value, checked } = e.target;
+    let updatedComfort = [...formData.comfort];
+    
+    if (checked) {
+      updatedComfort.push({ comodidades: value });
+    } else {
+      updatedComfort = updatedComfort.filter(item => item.comodidades !== value);
+    }
+    
+    setFormData({
+      ...formData,
+      comfort: updatedComfort
+    });
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setError(null);
     
     try {
-      // Convertir a FormData aquí en lugar del service
-      const formData = new FormData();
-      
-      // Añadir todos los campos
-      for (const key in roomData) {
-        if (roomData[key] !== null && roomData[key] !== undefined) {
-          formData.append(key, roomData[key]);
-        }
-      }
-
-      const response = await addRoom(formData);
-      
-      if (response.success) {
+      const result = await addRoom(formData, file);
+      if (result.success) {
         setSuccess(true);
-        setTimeout(() => navigate('/rooms'), 2000);
-        return true;
+        // Reset form after successful submission
+        setFormData({
+          hotel: '',
+          roomNumber: '',
+          floor: '',
+          capacity: '',
+          comfort: [],
+          type: 'Individual',
+          description: '',
+          priceNight: '',
+          status: 'available',
+          statusActive: true
+        });
+        setFile(null);
       } else {
-        setError(response.error);
-        return false;
+        setError(result.error);
       }
     } catch (err) {
-      setError('Error al conectar con el servidor');
-      return false;
+      setError(err.message);
     } finally {
       setLoading(false);
     }
   };
 
-  return { submitRoom, loading, error, success };
+  return {
+    formData,
+    file,
+    hotels,
+    loading,
+    error,
+    success,
+    handleInputChange,
+    handleComfortChange,
+    handleFileChange,
+    handleSubmit,
+    setSuccess
+  };
+};
+
+
+export const useRooms = () => {
+  const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchRooms = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const result = await listRooms();
+      
+      if (Array.isArray(result)) {
+        setRooms(result);
+      } else if (result && result.success === false) {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRooms();
+  }, []);
+
+  return {
+    rooms,
+    loading,
+    error,
+    refreshRooms: fetchRooms
+  };
 };

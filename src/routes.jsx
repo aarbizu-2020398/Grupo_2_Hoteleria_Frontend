@@ -2,10 +2,10 @@ import { Navigate } from "react-router";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import RoomFormPage from "./pages/RoomFormPage";
 import EventRoomFormPage from "./pages/EventRoomFormPage";
 import { Dashboard } from "./pages/Dashboard";
-import { HotelFormPage } from "./pages/privatePagesAdmin";
+import { HotelFormPage, PrivateFormRoom, PrivateListRooms, PrivateServices } from "./pages/privatePagesAdmin";
+import { RoomFormPage } from "./pages/privatePagesAdmin";
 
 const routes = [
     {path: "/HomePage", element: <HomePage />},
@@ -15,7 +15,10 @@ const routes = [
     {path: "/room-form", element: <RoomFormPage />},
     {path: "/event-room-form", element: <EventRoomFormPage />},
     {path: "/", element: <Navigate to={"/Homepage"}/>},
-    {path: "/dashboard", element: <Dashboard/>}
+    {path: "/dashboard", element: <Dashboard/>},
+    {path: "/add-room", element: <PrivateFormRoom/>},
+    {path: "/services-form", element: <PrivateServices/>},
+    {path: "/room-list", element: <PrivateListRooms/>},
 ]
 
 export default routes

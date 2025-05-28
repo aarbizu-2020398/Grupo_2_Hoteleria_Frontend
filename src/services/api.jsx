@@ -82,21 +82,90 @@ export const register = async (data) => {
     }
 };
 
-export const addRoom = async (roomData) => {
+export const addRoom = async (roomData, file) => {
   try {
+    const formData = new FormData();
+    Object.keys(roomData).forEach(key => {
+      formData.append(key, roomData[key]);
+    });
+    if (file) {
+      formData.append('pictureRoom', file);
+    }
+    roomData.comfort.forEach((item, index) => {
+      formData.append(`comfort[${index}][comodidades]`, item.comodidades);
+    });
 
-    const response = await apiClient.post('/rooms/addRoom', roomData, {
+    const response = await apiClient.post('/Rooms/addRoom', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     });
     
-    return { success: true, data: response.data };
-  } catch (errors) {
-    console.error(errors);
-    return { 
-      success: false, 
-      error: errors.response?.data?.msg || errors.message 
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listHotels = async () => {
+  try {
+    const response = await apiClient.get('/Hotels/listAllHotels');
+    return response.data.hotels
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+
+export const addService = async (serviceData) => {
+  try {
+    const response = await apiClient.post('/Resources/newService', serviceData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listServices = async () => {
+  try {
+    const response = await apiClient.get('/Resources/listServices');
+    return response.data.services || [];
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listRooms = async () => {
+  try {
+    const response = await apiClient.get('/Rooms/listAllRooms');
+    return response.data.rooms
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
     };
   }
 };
