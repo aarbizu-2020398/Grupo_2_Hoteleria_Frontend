@@ -10,7 +10,7 @@ export const DashboardPageAdmin = () => {
         <NavbarAdmin/>
 
         {/* Hero Section */}
-        <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16 px-6">
+        <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-25 px-6">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Panel de Administración </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
