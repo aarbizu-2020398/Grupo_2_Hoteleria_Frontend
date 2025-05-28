@@ -2,10 +2,10 @@ import { Navigate } from "react-router";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import HotelFormPage from "./pages/HotelFormPage";
 import RoomFormPage from "./pages/RoomFormPage";
 import EventRoomFormPage from "./pages/EventRoomFormPage";
 import { Dashboard } from "./pages/Dashboard";
+import { HotelFormPage } from "./pages/privatePagesAdmin";
 
 const routes = [
     {path: "/HomePage", element: <HomePage />},

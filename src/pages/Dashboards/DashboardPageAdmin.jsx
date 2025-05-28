@@ -102,6 +102,28 @@ export const DashboardPageAdmin = () => {
                 <h4 className="text-xl font-semibold text-gray-800 mb-2">Usuarios y Permisos</h4>
                 <p className="text-gray-600">Controla los accesos y roles dentro del sistema.</p>
               </div>
+              {/* Movements Management */}
+              <div 
+                onClick={() => navigate( /* rutas servicios*/)}
+                className="bg-white rounded-xl shadow-md p-6 cursor-pointer hover:shadow-lg transition-all hover:-translate-y-1"
+                >
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600">
+                  <i className="fas fa-exchange-alt text-2xl"></i>
+                </div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">Salones</h4>
+                <p className="text-gray-600">Controla todos los salones de los hoteles</p>
+              </div>
+              {/* Movements Management */}
+              <div 
+                onClick={() => navigate( /* rutas servicios*/)}
+                className="bg-white rounded-xl shadow-md p-6 cursor-pointer hover:shadow-lg transition-all hover:-translate-y-1"
+                >
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600">
+                  <i className="fas fa-exchange-alt text-2xl"></i>
+                </div>
+                <h4 className="text-xl font-semibold text-gray-800 mb-2">Eventos</h4>
+                <p className="text-gray-600">Controla todos los Eventos</p>
+              </div>
             </div>
           </div>
         </section>

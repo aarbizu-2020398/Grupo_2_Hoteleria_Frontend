@@ -81,3 +81,22 @@ export const register = async (data) => {
         };
     }
 };
+
+export const addRoom = async (roomData) => {
+  try {
+
+    const response = await apiClient.post('/rooms/addRoom', roomData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    
+    return { success: true, data: response.data };
+  } catch (errors) {
+    console.error(errors);
+    return { 
+      success: false, 
+      error: errors.response?.data?.msg || errors.message 
+    };
+  }
+};
