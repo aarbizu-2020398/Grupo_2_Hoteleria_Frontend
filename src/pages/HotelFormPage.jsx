@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import CreateHotelForm from '../components/hotel/hotelForm';
 import { useHotelRegistration } from '../hooks/useHotels';
+import HotelCard from '../components/hotel/hotelList';
 
 const HotelRegistrationPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -18,7 +19,6 @@ const HotelRegistrationPage = () => {
     <>
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        
         <div className="container mx-auto p-4 pt-20">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold text-gray-800">Gestión de Hoteles</h1>
@@ -45,8 +45,8 @@ const HotelRegistrationPage = () => {
             </div>
           )}
 
-          {/* Aquí iría la lista de hoteles registrados */}
-          
+          { <HotelCard />}
+
           {showForm && (
             <CreateHotelForm 
             onClose={() => setShowForm(false)} 
