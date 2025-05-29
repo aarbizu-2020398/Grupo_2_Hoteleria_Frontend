@@ -68,10 +68,10 @@ const ServicesPage = () => {
             <ServiceList services={services} loading={loading} error={error} />
             </div>
         </div>
-                <div className="container mx-auto p-4 pt-20">
+        <div className="container mx-auto p-4 pt-20">
           <div className="flex justify-between items-center mb-6">
           <button className='px-4 py-2 bg-blue-950 text-white rounded-md hover:bg-blue-700'>
-            <Link to="/dashboard">
+            <Link to="/ServicesAndResources">
               Regresar
             </Link>
           </button>

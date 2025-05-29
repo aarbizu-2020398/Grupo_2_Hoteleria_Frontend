@@ -15,7 +15,7 @@ export const DashboardPageAdmin = () => {
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Panel de Administración</h1>
             <p className="text-xl md:text-2xl text-[#cceeff] max-w-3xl mx-auto">
-              Control total de tu almacenadora desde un solo lugar
+              Control total de tu gestión de Hoteles desde un solo lugar
             </p>
           </div>
         </header>
@@ -53,11 +53,11 @@ export const DashboardPageAdmin = () => {
                   title: 'Servicios',
                   desc: 'Controla todos los servicios de los hoteles',
                   img: 'https://i.postimg.cc/13djB3QZ/image.png',
-                  route: '/services-form', // pendiente
+                  route: '/ServicesAndResources', // pendiente
                 },
                 {
-                  title: 'Cuartos',
-                  desc: 'Controla todos los Cuartos de los hoteles',
+                  title: 'Habitaciones',
+                  desc: 'Controla todos las Habitaciones de los hoteles',
                   img: 'https://i.postimg.cc/Lskq5W9g/image.png',
                   route: '/room-form',
                 },
@@ -77,7 +77,7 @@ export const DashboardPageAdmin = () => {
                   title: 'Salones',
                   desc: 'Controla todos los salones de los hoteles',
                   img: 'https://i.postimg.cc/yNxhxmgm/image.png',
-                  route: '', // pendiente
+                  route: '/lounges', 
                 },
                 {
                   title: 'Eventos',

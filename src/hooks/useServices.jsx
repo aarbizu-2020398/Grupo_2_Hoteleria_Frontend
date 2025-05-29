@@ -1,4 +1,3 @@
-// hooks/useServices.js
 import { useState, useEffect } from 'react';
 import { addService, listServices } from '../services/api';
 

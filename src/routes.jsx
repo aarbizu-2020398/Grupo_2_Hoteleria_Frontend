@@ -4,8 +4,9 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import EventRoomFormPage from "./pages/EventRoomFormPage";
 import { Dashboard } from "./pages/Dashboard";
-import { HotelFormPage, PrivateFormRoom, PrivateListRooms, PrivateServices } from "./pages/privatePagesAdmin";
+import { HotelFormPage, PrivateFormRoom, PrivateListRooms, PrivateResources, PrivateRSPage, PrivateServices } from "./pages/privatePagesAdmin";
 import { RoomFormPage } from "./pages/privatePagesAdmin";
+import LoungeForm from "./pages/LoungesForm";
 
 const routes = [
     {path: "/HomePage", element: <HomePage />},
@@ -19,6 +20,10 @@ const routes = [
     {path: "/add-room", element: <PrivateFormRoom/>},
     {path: "/services-form", element: <PrivateServices/>},
     {path: "/room-list", element: <PrivateListRooms/>},
+    {path: "/resources-list", element: <PrivateResources/>},
+    {path: "/services-list", element: <PrivateServices/>},
+    {path: "/ServicesAndResources", element: <PrivateRSPage/>},
+    {path: "/lounges", element: <LoungeForm/>},
 ]
 
 export default routes
