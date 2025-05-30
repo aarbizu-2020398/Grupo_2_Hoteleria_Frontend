@@ -6,6 +6,7 @@ import RoomFormPages from "./RoomFormPage"
 import RoomListPage from "./RoomList"
 import RSPage from "./RSPage"
 import AddServicePage from "./Services"
+import UsersPages from "./UsersPages"
 
 export const HotelFormPage = () => {
   return (
@@ -59,6 +60,14 @@ export const PrivateRSPage = () =>{
   return(
     <>
       <PrivateRoutesRole element={<RSPage/>}/>
+    </>
+  )
+}
+
+export const PrivateUsersPage = () =>{
+  return(
+    <>
+      <PrivateRoutesRole element={<UsersPages/>}/>
     </>
   )
 }

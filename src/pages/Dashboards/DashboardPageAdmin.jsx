@@ -71,7 +71,7 @@ export const DashboardPageAdmin = () => {
                   title: 'Usuarios y Permisos',
                   desc: 'Controla los accesos y roles dentro del sistema.',
                   img: 'https://i.postimg.cc/Pr4vsC31/image.png',
-                  route: '', // pendiente
+                  route: '/users', // pendiente
                 },
                 {
                   title: 'Salones',
@@ -79,12 +79,14 @@ export const DashboardPageAdmin = () => {
                   img: 'https://i.postimg.cc/yNxhxmgm/image.png',
                   route: '/lounges', 
                 },
+                /*
                 {
                   title: 'Eventos',
                   desc: 'Controla todos los Eventos',
                   img: 'https://i.postimg.cc/Lsqcf0nv/image.png',
                   route: '', // pendiente
                 },
+                */
               ].map((item, index) => (
                 <div
                   key={index}

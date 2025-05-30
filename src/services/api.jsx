@@ -245,3 +245,35 @@ export const listLounges = async () => {
     };
   }
 };
+
+export const getUsers = async () => {
+  try {
+    const response = await apiClient.get('/User/viewUser');
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await apiClient.delete(`/User/deleteUser/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};

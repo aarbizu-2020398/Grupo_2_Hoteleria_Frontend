@@ -4,7 +4,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import EventRoomFormPage from "./pages/EventRoomFormPage";
 import { Dashboard } from "./pages/Dashboard";
-import { HotelFormPage, PrivateFormRoom, PrivateListRooms, PrivateResources, PrivateRSPage, PrivateServices } from "./pages/privatePagesAdmin";
+import { HotelFormPage, PrivateFormRoom, PrivateUsersPage, PrivateListRooms, PrivateResources, PrivateRSPage, PrivateServices } from "./pages/privatePagesAdmin";
 import { RoomFormPage } from "./pages/privatePagesAdmin";
 import LoungeForm from "./pages/LoungesForm";
 
@@ -24,6 +24,7 @@ const routes = [
     {path: "/services-list", element: <PrivateServices/>},
     {path: "/ServicesAndResources", element: <PrivateRSPage/>},
     {path: "/lounges", element: <LoungeForm/>},
+    {path: "/usersAdmin", element: <PrivateUsersPage/>},
 ]
 
 export default routes
