@@ -7,6 +7,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { HotelFormPage, PrivateFormRoom, PrivateUsersPage, PrivateListRooms, PrivateResources, PrivateRSPage, PrivateServices } from "./pages/privatePagesAdmin";
 import { RoomFormPage } from "./pages/privatePagesAdmin";
 import LoungeForm from "./pages/LoungesForm";
+import UsersPage from "./pages/UsersPage";
 
 const routes = [
     {path: "/HomePage", element: <HomePage />},
@@ -24,7 +25,7 @@ const routes = [
     {path: "/services-list", element: <PrivateServices/>},
     {path: "/ServicesAndResources", element: <PrivateRSPage/>},
     {path: "/lounges", element: <LoungeForm/>},
-    {path: "/usersAdmin", element: <PrivateUsersPage/>},
+    {path: "/users", element: <UsersPage/>}
 ]
 
 export default routes

@@ -246,9 +246,41 @@ export const listLounges = async () => {
   }
 };
 
-export const getUsers = async () => {
+export const listUsers = async (params = {}) => {
   try {
-    const response = await apiClient.get('/User/viewUser');
+    const response = await apiClient.get('/Listusers', { params });
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const getUserById = async (id) => {
+  try {
+    const response = await apiClient.get(`/users/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const updateUser = async (id, userData) => {
+  try {
+    const response = await apiClient.put(`/users/${id}`, userData);
     return {
       success: true,
       data: response.data
