@@ -5,7 +5,8 @@ const CreateHotelForm = ({ onClose, onSubmit }) => {
     nameHotel: '',
     address: '',
     category: '',
-    comfort: 'Standard'
+    comfort: 'Standard',
+    description: ""
   });
   const [file, setFile] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,6 +69,12 @@ const CreateHotelForm = ({ onClose, onSubmit }) => {
 
     if (!formData.category) {
       setError('La categoría es requerida');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.description) {
+      setError('La descripción es requerida');
       setIsSubmitting(false);
       return;
     }
@@ -151,6 +158,21 @@ const CreateHotelForm = ({ onClose, onSubmit }) => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
                 placeholder="Ej: 5 Estrellas, Boutique, Resort..."
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-medium mb-1">
+                Descripcion*
+              </label>
+              <input
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+                placeholder="Ej: Hotel deluxe..."
               />
             </div>
 

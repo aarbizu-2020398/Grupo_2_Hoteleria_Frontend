@@ -81,3 +81,233 @@ export const register = async (data) => {
         };
     }
 };
+
+export const addRoom = async (roomData, file) => {
+  try {
+    const formData = new FormData();
+    Object.keys(roomData).forEach(key => {
+      formData.append(key, roomData[key]);
+    });
+    if (file) {
+      formData.append('pictureRoom', file);
+    }
+    roomData.comfort.forEach((item, index) => {
+      formData.append(`comfort[${index}][comodidades]`, item.comodidades);
+    });
+
+    const response = await apiClient.post('/Rooms/addRoom', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listHotels = async () => {
+  try {
+    const response = await apiClient.get('/Hotels/listAllHotels');
+    return response.data.hotels
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+
+export const addService = async (serviceData) => {
+  try {
+    const response = await apiClient.post('/Resources/newService', serviceData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const addResource = async(resourceData) =>{
+  try {
+   const response = await apiClient.post("/Resources/newResource", resourceData)
+   return{
+    success: true,
+    data: response.data
+   } 
+   } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+}
+
+export const listServices = async () => {
+  try {
+    const response = await apiClient.get('/Resources/listServices');
+    return response.data.services || [];
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listResources = async () => {
+  try {
+    const response = await apiClient.get('/Resources/listResources');
+    return response.data.resources || [];
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listRooms = async () => {
+  try {
+    const response = await apiClient.get('/Rooms/listAllRooms');
+    return response.data.rooms
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const registerLounge = async (loungeData, file) => {
+  try {
+    const formData = new FormData();
+
+    Object.keys(loungeData).forEach(key => {
+      formData.append(key, loungeData[key]);
+    });
+
+    if (file) {
+      formData.append('pictureLounge', file);
+    }
+
+    const response = await apiClient.post('/Lounges/newLounge', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const listLounges = async () => {
+  try {
+    const response = await apiClient.get('/Lounges/listAllLounges');
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+//users
+
+export const listUsers = async (params = {}) => {
+  try {
+    const response = await apiClient.get('/Listusers', { params });
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const getUserById = async (id) => {
+  try {
+    const response = await apiClient.get(`/users/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const updateUser = async (id, userData) => {
+  try {
+    const response = await apiClient.put(`/users/${id}`, userData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await apiClient.delete(`/users/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      error: error.response?.data?.msg || error.message
+    };
+  }
+};
